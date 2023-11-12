@@ -1,13 +1,30 @@
 # BiometricsHack
 face anti-spoofing solution for Biometrics hackathon
 
-качаем библы
+## Запуск приложения
+Эта инструкция позволит запустить приложение на операционных системах Linux и Windows.
 
-во фронте
+### Шаг 1: Клонировать репозиторий
+Если у вас еще нет локальной копии репозитория, клонируйте его из Git-репозитория:
+
+```bash
+git clone https://github.com/BurykinaA/BiometricsHack.git
+cd BiometricsHack
+```
+##Шаг 2: Frontend
+```bash
+cd frontend
 npm install
 npm run dev
+cd..
+```
 
-на бэке
-flask run
+##Шаг 3: Backend
 
-все исследование в biometria.ipynb
+```bash
+cd backend
+python -m flask run
+```
+
+
+Со всеми исследованиями можно ознакомится в biometria.ipynb
