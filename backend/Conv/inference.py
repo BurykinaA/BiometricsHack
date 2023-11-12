@@ -4,7 +4,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-device = 'cpu'
+device = "cpu"
+
 
 class CustomModel2(nn.Module):
     def __init__(self):
@@ -15,7 +16,7 @@ class CustomModel2(nn.Module):
         self.conv2 = nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1)
         self.bn2 = nn.BatchNorm2d(128)
         self.pool2 = nn.MaxPool2d(kernel_size=2)
-        self.dense = nn.Linear(128*8*8, 512, bias=False)
+        self.dense = nn.Linear(128 * 8 * 8, 512, bias=False)
         self.bn3 = nn.BatchNorm1d(512)
         self.dropout = nn.Dropout(0.1)
         self.fc = nn.Linear(512, 2)
@@ -36,7 +37,8 @@ class CustomModel2(nn.Module):
 model = CustomModel2()
 model.load_state_dict(
     torch.load(
-        r"D:\sber_hack\backend\models_weights\model_conv.pth", map_location=torch.device("cpu")
+        r"D:\sber_hack\backend\models_weights\model_conv.pth",
+        map_location=torch.device("cpu"),
     )
 )
 model.eval()

@@ -9,6 +9,7 @@ from __future__ import division
 import math
 import random
 from PIL import Image
+
 try:
     import accimage
 except ImportError:
@@ -19,8 +20,17 @@ import types
 
 from . import functional as F
 
-__all__ = ["Compose", "ToTensor", "ToPILImage", "Normalize", "RandomHorizontalFlip",
-           "Lambda", "RandomResizedCrop", "ColorJitter", "RandomRotation"]
+__all__ = [
+    "Compose",
+    "ToTensor",
+    "ToPILImage",
+    "Normalize",
+    "RandomHorizontalFlip",
+    "Lambda",
+    "RandomResizedCrop",
+    "ColorJitter",
+    "RandomRotation",
+]
 
 
 class Compose(object):
@@ -95,6 +105,7 @@ class ToPILImage(object):
 
     .. _PIL.Image mode: http://pillow.readthedocs.io/en/3.4.x/handbook/concepts.html#modes
     """
+
     def __init__(self, mode=None):
         self.mode = mode
 
@@ -167,7 +178,13 @@ class RandomResizedCrop(object):
         interpolation: Default: PIL.Image.BILINEAR
     """
 
-    def __init__(self, size, scale=(0.08, 1.0), ratio=(3. / 4., 4. / 3.), interpolation=Image.BILINEAR):
+    def __init__(
+        self,
+        size,
+        scale=(0.08, 1.0),
+        ratio=(3.0 / 4.0, 4.0 / 3.0),
+        interpolation=Image.BILINEAR,
+    ):
         if isinstance(size, tuple):
             self.size = size
         else:
@@ -236,6 +253,7 @@ class ColorJitter(object):
         hue(float): How much to jitter hue. hue_factor is chosen uniformly from
             [-hue, hue]. Should be >=0 and <= 0.5.
     """
+
     def __init__(self, brightness=0, contrast=0, saturation=0, hue=0):
         self.brightness = brightness
         self.contrast = contrast
@@ -254,16 +272,26 @@ class ColorJitter(object):
         """
         transforms = []
         if brightness > 0:
-            brightness_factor = np.random.uniform(max(0, 1 - brightness), 1 + brightness)
-            transforms.append(Lambda(lambda img: F.adjust_brightness(img, brightness_factor)))
+            brightness_factor = np.random.uniform(
+                max(0, 1 - brightness), 1 + brightness
+            )
+            transforms.append(
+                Lambda(lambda img: F.adjust_brightness(img, brightness_factor))
+            )
 
         if contrast > 0:
             contrast_factor = np.random.uniform(max(0, 1 - contrast), 1 + contrast)
-            transforms.append(Lambda(lambda img: F.adjust_contrast(img, contrast_factor)))
+            transforms.append(
+                Lambda(lambda img: F.adjust_contrast(img, contrast_factor))
+            )
 
         if saturation > 0:
-            saturation_factor = np.random.uniform(max(0, 1 - saturation), 1 + saturation)
-            transforms.append(Lambda(lambda img: F.adjust_saturation(img, saturation_factor)))
+            saturation_factor = np.random.uniform(
+                max(0, 1 - saturation), 1 + saturation
+            )
+            transforms.append(
+                Lambda(lambda img: F.adjust_saturation(img, saturation_factor))
+            )
 
         if hue > 0:
             hue_factor = np.random.uniform(-hue, hue)
@@ -282,8 +310,9 @@ class ColorJitter(object):
         Returns:
             PIL Image: Color jittered image.
         """
-        transform = self.get_params(self.brightness, self.contrast,
-                                    self.saturation, self.hue)
+        transform = self.get_params(
+            self.brightness, self.contrast, self.saturation, self.hue
+        )
         return transform(img)
 
 

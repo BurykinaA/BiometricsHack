@@ -22,16 +22,20 @@ from Conv.inference import get_score_conv
 #         transforms.PILToTensor(),
 #     ])
 
+
 class SquareCrop:
     def __call__(self, image):
         return transforms.functional.center_crop(image, min(image.size))
 
-transform = transforms.Compose([
-    transforms.ToPILImage(),
-    SquareCrop(), # Обрезка изображения до квадрата
-    transforms.Resize((128, 128)), # Изменение размера изображения
-    transforms.ToTensor(),
-])
+
+transform = transforms.Compose(
+    [
+        transforms.ToPILImage(),
+        SquareCrop(),  # Обрезка изображения до квадрата
+        transforms.Resize((128, 128)),  # Изменение размера изображения
+        transforms.ToTensor(),
+    ]
+)
 
 
 @cross_origin()
@@ -51,17 +55,23 @@ def make_correction():
         X = X.unsqueeze(0)
         # print(X)
 
-        print('---------')
-        mcnn = 'real' if get_score(X) == 1 else 'fake'
+        print("---------")
+        mcnn = "real" if get_score(X) == 1 else "fake"
         print(mcnn)
-        mobilenet = 'real' if get_score_mobil(X) == 1 else 'fake'
+        mobilenet = "real" if get_score_mobil(X) == 1 else "fake"
         print(mobilenet)
-        minifasnet = 'real' if get_sreenshot(numpy_array) == 1 else 'fake'
+        minifasnet = "real" if get_sreenshot(numpy_array) == 1 else "fake"
         print(minifasnet)
         # conv = 'real' if get_score_conv(numpy_array) == 1 else 'fake'
         # print(conv)
 
-        resp = {'minifasnet': minifasnet, 'mcnn': mcnn, 'mobilenet':mobilenet, 'conv':'hui', "photo": data["photo"]}
+        resp = {
+            "minifasnet": minifasnet,
+            "mcnn": mcnn,
+            "mobilenet": mobilenet,
+            "conv": "hui",
+            "photo": data["photo"],
+        }
         responses.append(resp)
         # print(responses)
 
@@ -84,16 +94,22 @@ def camera_pic():
         X = X.unsqueeze(0)
         # print(X)
 
-        mcnn = 'real' if get_score(X) == 1 else 'fake'
+        mcnn = "real" if get_score(X) == 1 else "fake"
         print(mcnn)
-        mobilenet = 'real' if get_score_mobil(X) == 1 else 'fake'
+        mobilenet = "real" if get_score_mobil(X) == 1 else "fake"
         print(mobilenet)
-        minifasnet = 'real' if get_sreenshot(numpy_array) == 1 else 'fake'
+        minifasnet = "real" if get_sreenshot(numpy_array) == 1 else "fake"
         print(minifasnet)
         # conv = 'real' if get_score_conv(numpy_array) == 1 else 'fake'
         # print(conv)
 
-        resp = {'minifasnet': minifasnet, 'mcnn': mcnn, 'mobilenet':mobilenet, 'conv':'hui', "photo": data["photo"]}
+        resp = {
+            "minifasnet": minifasnet,
+            "mcnn": mcnn,
+            "mobilenet": mobilenet,
+            "conv": "hui",
+            "photo": data["photo"],
+        }
         responses.append(resp)
         # print(responses)
 

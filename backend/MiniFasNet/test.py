@@ -11,7 +11,6 @@ from .utility import parse_model_name
 warnings.filterwarnings("ignore")
 
 
-
 def check_image(image):
     height, width, channel = image.shape
     if width / height != 3 / 4:
@@ -29,10 +28,10 @@ def test(numpy_array, model_dir, device_id):
         height, width, channel = image.shape
         new_width = int(height * (3 / 4))
         aspect_ratio = width / height
-        
+
         new_width = int(height * aspect_ratio)
         new_height = height
-        
+
         image = cv2.resize(image, (new_width, new_height))
     image_bbox = model_test.get_bbox(image)
     prediction = np.zeros((1, 3))
@@ -71,6 +70,6 @@ def get_sreenshot(img):
     path = os.path.join(current_dir, relevant_path)
     return test(
         img,
-        path, 
+        path,
         0,
     )
