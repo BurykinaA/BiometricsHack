@@ -60,7 +60,7 @@ resnet_model = InceptionResnetV1(pretrained="vggface2").eval().to("cpu")
 model = CustomModel()
 model.load_state_dict(
     torch.load(
-        r"D:\sber_hack\backend\models_weights\model_mtcnn.pth",
+        r"models_weights\model_mtcnn.pth",
         map_location=torch.device("cpu"),
     )
 )

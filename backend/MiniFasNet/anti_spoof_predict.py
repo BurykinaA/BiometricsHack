@@ -15,8 +15,8 @@ MODEL_MAPPING = {"MiniFASNetV2": MiniFASNetV2}
 
 class Detection:
     def __init__(self):
-        caffemodel = "D:/sber_hack/backend/MiniFasNet/detection_model/Widerface-RetinaFace.caffemodel"
-        deploy = "D:/sber_hack/backend/MiniFasNet/detection_model/deploy.prototxt"
+        caffemodel = r"MiniFasNet\detection_model\Widerface-RetinaFace.caffemodel"
+        deploy = r"MiniFasNet\detection_model\deploy.prototxt"
         self.detector = cv2.dnn.readNetFromCaffe(deploy, caffemodel)
         self.detector_confidence = 0.6
 

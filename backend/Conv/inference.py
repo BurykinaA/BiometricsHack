@@ -37,7 +37,7 @@ class CustomModel2(nn.Module):
 model = CustomModel2()
 model.load_state_dict(
     torch.load(
-        r"D:\sber_hack\backend\models_weights\model_conv.pth",
+        r"models_weights\model_conv.pth",
         map_location=torch.device("cpu"),
     )
 )
