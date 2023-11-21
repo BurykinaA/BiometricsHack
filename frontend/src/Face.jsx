@@ -62,7 +62,7 @@ function Face() {
           .then(response => {
             const data= response.data
             // localStorage.setItem('response', data.photo)
-            setPicture(data[0].mcnn)
+            setPicture(data[0].minifasnet)
             // console.log(data.id)
           })
           .catch(error => {

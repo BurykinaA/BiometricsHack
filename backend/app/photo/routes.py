@@ -55,13 +55,13 @@ def make_correction():
         X = X.unsqueeze(0)
         # print(X)
 
-        print("---------")
+        # print("---------")
         mcnn = "real" if get_score(X) == 1 else "fake"
-        print(mcnn)
+        # print(mcnn)
         mobilenet = "real" if get_score_mobil(X) == 1 else "fake"
-        print(mobilenet)
+        # print(mobilenet)
         minifasnet = "real" if get_sreenshot(numpy_array) == 1 else "fake"
-        print(minifasnet)
+        # print(minifasnet)
         # conv = 'real' if get_score_conv(numpy_array) == 1 else 'fake'
         # print(conv)
 
@@ -74,7 +74,7 @@ def make_correction():
         }
         responses.append(resp)
         # print(responses)
-
+    print(responses)
     return make_response(responses)
 
 
@@ -89,24 +89,12 @@ def camera_pic():
         image = Image.open(image_io)
         numpy_array = np.array(image)
 
-        X = transform(numpy_array)
-        X = X * 255
-        X = X.unsqueeze(0)
-        # print(X)
-
-        mcnn = "real" if get_score(X) == 1 else "fake"
-        print(mcnn)
-        mobilenet = "real" if get_score_mobil(X) == 1 else "fake"
-        print(mobilenet)
         minifasnet = "real" if get_sreenshot(numpy_array) == 1 else "fake"
-        print(minifasnet)
-        # conv = 'real' if get_score_conv(numpy_array) == 1 else 'fake'
-        # print(conv)
 
         resp = {
             "minifasnet": minifasnet,
-            "mcnn": mcnn,
-            "mobilenet": mobilenet,
+            "mcnn": "",
+            "mobilenet": "",
             "conv": "hui",
             "photo": data["photo"],
         }

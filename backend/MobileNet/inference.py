@@ -9,9 +9,7 @@ model = models.mobilenet_v2(pretrained=False)
 model.classifier[1] = nn.Linear(model.last_channel, 2)
 model.to(device)
 model.load_state_dict(
-    torch.load(
-        r"models_weights\model_mobileNet.pth", map_location="cpu"
-    )
+    torch.load(r"models_weights\model_mobileNet.pth", map_location="cpu")
 )
 model.eval()
 

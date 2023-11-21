@@ -37,15 +37,15 @@ const handlePost = (event) => {
             // setPicture(data)
             setImage(data)
             console.log(data)
-            axios.post(URL+'/api/download', data, )
-            .then(response=>{
-              const url = window.URL.createObjectURL(new Blob([response.data]));
-              const a = document.createElement('a');
-              a.href = url;
-              a.download = 'result.csv';//сюда имя
-              a.click();
-              window.URL.revokeObjectURL(url);
-              })
+            // axios.post(URL+'/api/download', data, )
+            // .then(response=>{
+            //   const url = window.URL.createObjectURL(new Blob([response.data]));
+            //   const a = document.createElement('a');
+            //   a.href = url;
+            //   a.download = 'result.csv';//сюда имя
+            //   a.click();
+            //   window.URL.revokeObjectURL(url);
+            //   })
           })
           .catch(error => {
             console.error('Error:', error);
@@ -92,7 +92,9 @@ const handlePost = (event) => {
       :
         (image.map((pic, index)=>(
           <div className='my-20'>
-          <p className='m-5 text-7xl'>{index} {pic.log}</p>
+            {image.length>0&& <p className='m-5 text-5xl'>{index}  mcnn: {pic.mcnn}, minifasnet: {pic.minifasnet}, mobilenet: {pic.mobilenet}</p>}
+          
+          
           <img className='inline-block object-cover ml-3 rounded-lg h-[960px] w-[960px]' src={'data:image/jpeg;base64,'+pic.photo}/>
           </div>
         
